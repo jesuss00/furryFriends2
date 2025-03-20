@@ -4,26 +4,19 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
-    /**
-     * Run the migrations.
-     */
-    public function up(): void
-    {
+return new class extends Migration {
+    public function up() {
         Schema::create('ventas', function (Blueprint $table) {
             $table->id();
-            $table->dateTime('fecha_venta');
-            $table->string('productos_comprados');
-            $table->decimal('total', 8, 2);
+            $table->unsignedBigInteger('usuario_id');
+            $table->date('fecha');
+            $table->decimal('total', 10, 2);
+
+            $table->foreign('usuario_id')->references('id')->on('usuarios')->onDelete('cascade');
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
-    public function down(): void
-    {
+    public function down() {
         Schema::dropIfExists('ventas');
     }
 };

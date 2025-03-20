@@ -21,7 +21,6 @@ return new class extends Migration
             $table->string('contraseña');
             $table->date('fecha');
             $table->boolean('estado')->default(true);
-            $table->timestamps();
         });
     }
 

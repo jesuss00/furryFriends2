@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('mascotas', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('propietario_id');
             $table->string('nombre');
             $table->string('id_mascota')->unique(); 
             $table->integer('edad'); 
@@ -20,6 +21,7 @@ return new class extends Migration
             $table->string('especie'); 
             $table->text('info_medica')->nullable(); // Campo para información médica (puede ser nulo)
             $table->string('genero');
+            $table->foreign('propietario_id')->references('id')->on('propietarios')->onDelete('cascade');
         });
     }
 
